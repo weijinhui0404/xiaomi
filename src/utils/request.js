@@ -1,11 +1,6 @@
 import axios from "axios";
-<<<<<<< HEAD
 import {BASE_URL}  from "./tools"
 import {getToken}  from  "./auth"
-=======
-import { BASE_URL } from "./tools";
-import { getToken } from "./auth";
->>>>>>> ad3ffcbdb25f9612f2793b14ffa0ec6326412020
 const instance = axios.create({
   baseURL: BASE_URL,
   tiemout: 5000,
