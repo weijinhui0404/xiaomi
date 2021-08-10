@@ -1,31 +1,47 @@
 <template>
-    <div class='order'>订单页面</div>
+  <div class="order">
+    <van-nav-bar
+      title="全部订单"
+      left-text="返回"
+      right-text="按钮"
+      left-arrow
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    />
+    <van-card
+      num="2"
+      price="2.00"
+      desc="描述信息"
+      title="商品标题"
+      thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+    />
+  </div>
 </template>
 
 <script>
+import { Toast } from 'vant';
+
 export default {
-    
-    components: {},
-    data() {
+  components: {},
+  data() {
+    return {
         
-        return {
-            
-        };
+    };
+  },
+  computed: {},
+  watch: {},
+
+  methods: {
+      onClickLeft() {
+      this.$router.push("/user")
     },
-    computed: {},
-    watch: {},
-    
-    methods: {
-        
+    onClickRight() {
+      Toast('按钮');
     },
-    created() {
-        
-    },
-    mounted() {
-        
-    },
-    }
+  },
+  created() {},
+  mounted() {},
+};
 </script>
 <style scoped>
-    
 </style>
