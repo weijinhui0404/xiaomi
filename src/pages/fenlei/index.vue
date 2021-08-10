@@ -23,6 +23,7 @@
           :price="item.price"
           :title="item.name"
           :thumb="item.coverImg"
+          @click="godetail(item._id)"
         />
       </van-list>
     </div>
@@ -46,7 +47,12 @@ export default {
   watch: {},
 
   methods: {
-    onLoad() {},
+    godetail(id) {
+      this.$router.push("/detail/" + id);
+    },
+    onLoad() {
+      this.getalllist();
+    },
     //   推荐列表   我这里是显示了全部
     async getalllist() {
       this.loading = true;
@@ -71,19 +77,7 @@ export default {
         name: this.titlist[i].name,
       });
       console.log(res);
-      if (this.titlist[i].name == "灯具") {
-        var newlist = [];
-        this.list.filter((item) => {
-          if (item.name.includes("灯")) {
-            newlist.push(item);
-          }
-          return newlist;
-        });
-        this.list = newlist;
-        console.log(this.list);
-      } else {
-        this.list = res.data.products;
-      }
+      this.list = res.data.products;
     },
     // 获取分类 api
     async getmmm() {
