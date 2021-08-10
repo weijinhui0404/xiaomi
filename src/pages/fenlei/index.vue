@@ -23,6 +23,7 @@
           :price="item.price"
           :title="item.name"
           :thumb="item.coverImg"
+          @click="godetail(item._id)"
         />
       </van-list>
     </div>
@@ -46,7 +47,12 @@ export default {
   watch: {},
 
   methods: {
-    onLoad() {},
+    godetail(id) {
+      this.$router.push("/detail/" + id);
+    },
+    onLoad() {
+      this.getalllist();
+    },
     //   推荐列表   我这里是显示了全部
     async getalllist() {
       this.loading = true;
@@ -54,6 +60,7 @@ export default {
         per: 120,
         page: 1,
       });
+      console.log(res);
       this.loading = false;
       this.list = [...this.list, ...res.data.products];
       if (this.list.length < 10) {
@@ -69,7 +76,7 @@ export default {
       const res = await get("/api/v1/products", {
         name: this.titlist[i].name,
       });
-      //   console.log(res);
+      console.log(res);
       this.list = res.data.products;
     },
     // 获取分类 api
