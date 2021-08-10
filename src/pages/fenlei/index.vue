@@ -54,6 +54,7 @@ export default {
         per: 120,
         page: 1,
       });
+      console.log(res);
       this.loading = false;
       this.list = [...this.list, ...res.data.products];
       if (this.list.length < 10) {
@@ -69,8 +70,20 @@ export default {
       const res = await get("/api/v1/products", {
         name: this.titlist[i].name,
       });
-      //   console.log(res);
-      this.list = res.data.products;
+      console.log(res);
+      if (this.titlist[i].name == "灯具") {
+        var newlist = [];
+        this.list.filter((item) => {
+          if (item.name.includes("灯")) {
+            newlist.push(item);
+          }
+          return newlist;
+        });
+        this.list = newlist;
+        console.log(this.list);
+      } else {
+        this.list = res.data.products;
+      }
     },
     // 获取分类 api
     async getmmm() {
