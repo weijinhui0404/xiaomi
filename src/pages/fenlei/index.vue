@@ -1,7 +1,7 @@
 <template>
   <div class="fenlei">
     <van-sidebar v-model="activeKey" class="sti">
-      <van-sidebar-item title="推荐" @click="getalllist" />
+      <van-sidebar-item class="jb" title="推荐" @click="getalllist" />
       <van-sidebar-item
         v-for="(item, index) in titlist"
         :title="item.name"
@@ -99,5 +99,11 @@ export default {
     height: 100%;
     float: right;
     padding-bottom: 60px;
+}
+.jb{
+    font-weight: 900;
+}
+.van-card__price-integer{
+    font-size: 14px;
 }
 </style>
