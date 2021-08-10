@@ -67,7 +67,7 @@ const router = new VueRouter({
               },
         },
         {
-            path:"/oder",
+            path:"/order",
             component:()=>import("../pages/order"),
             meta: {
                 showTab: false,

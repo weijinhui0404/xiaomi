@@ -9,7 +9,7 @@
 
     <div class="order">
       <div class="order-left">我的订单</div>
-      <div class="order-right">全部订单<van-icon name="arrow" size="30" /></div>
+      <div class="order-right" @click="goOrder">全部订单<van-icon name="arrow" size="30" /></div>
     </div>
   </div>
 </template>
@@ -25,7 +25,11 @@ export default {
   computed: {},
   watch: {},
 
-  methods: {},
+  methods: {
+    goOrder(){
+      this.$router.push("/order")
+    }
+  },
   created() {},
   mounted() {},
 };
