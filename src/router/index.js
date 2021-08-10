@@ -60,7 +60,7 @@ const router = new VueRouter({
               },
         },
         {
-            path:"/detail",
+            path:"/detail/:id",
             component:()=>import("../pages/detail"),
             meta: {
                 showTab: false,

@@ -1,7 +1,7 @@
 <template>
   <div class="fenlei">
     <van-sidebar v-model="activeKey" class="sti">
-      <van-sidebar-item title="推荐" @click="getalllist" />
+      <van-sidebar-item class="jb" title="推荐" @click="getalllist" />
       <van-sidebar-item
         v-for="(item, index) in titlist"
         :title="item.name"
@@ -23,6 +23,7 @@
           :price="item.price"
           :title="item.name"
           :thumb="item.coverImg"
+          @click="godetail(item._id)"
         />
       </van-list>
     </div>
@@ -46,7 +47,12 @@ export default {
   watch: {},
 
   methods: {
-    onLoad() {},
+    godetail(id) {
+      this.$router.push("/detail/" + id);
+    },
+    onLoad() {
+      this.getalllist();
+    },
     //   推荐列表   我这里是显示了全部
     async getalllist() {
       this.loading = true;
@@ -54,6 +60,7 @@ export default {
         per: 120,
         page: 1,
       });
+      console.log(res);
       this.loading = false;
       this.list = [...this.list, ...res.data.products];
       if (this.list.length < 10) {
@@ -69,7 +76,7 @@ export default {
       const res = await get("/api/v1/products", {
         name: this.titlist[i].name,
       });
-      //   console.log(res);
+      console.log(res);
       this.list = res.data.products;
     },
     // 获取分类 api
@@ -99,5 +106,11 @@ export default {
     height: 100%;
     float: right;
     padding-bottom: 60px;
+}
+.jb{
+    font-weight: 900;
+}
+.van-card__price-integer{
+    font-size: 14px;
 }
 </style>
