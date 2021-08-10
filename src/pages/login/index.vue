@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+     <van-icon name="arrow-left" size="30" />
     <div class="logo">
       <img src="../../../public/img/logo.png" alt="" />
       <p>让每个人都能享受科技的乐趣</p>
