@@ -1,29 +1,36 @@
 <template>
   <div class="home">
-    <!-- 头部搜索 -->
-    <div id="top">
-      <p class="logo">
-        <img
-          src="https://img1.baidu.com/it/u=2254580103,1701342391&fm=26&fmt=auto&gp=0.jpg"
-          alt=""
+    <van-sticky>
+      <!-- 头部搜索 -->
+      <div id="top">
+        <p class="logo">
+          <img
+            src="https://img1.baidu.com/it/u=2254580103,1701342391&fm=26&fmt=auto&gp=0.jpg"
+            alt=""
+          />
+        </p>
+        <van-search
+          v-model="value"
+          placeholder="请输入搜索关键词"
+          class="topipt"
+          @search="onSearch"
+          @clear="onClear"
         />
-      </p>
-      <van-search
-        v-model="value"
-        placeholder="请输入搜索关键词"
-        class="topipt"
-        @search="onSearch"
-        @clear="onClear"
-      />
-      <van-icon name="friends-o" color="#999" class="toprig" @click="gouser" />
-    </div>
+        <van-icon
+          name="friends-o"
+          color="#999"
+          class="toprig"
+          @click="gouser"
+        />
+      </div>
 
-    <!-- nav -->
-    <van-tabs v-model="active" @click="classify" sticky class="nav">
-      <van-tab v-for="item in topnav" :title="item.title" :key="item.id">
-        <!-- 内容 {{ item }} -->
-      </van-tab>
-    </van-tabs>
+      <!-- nav -->
+      <van-tabs v-model="active" @click="classify" sticky class="nav">
+        <van-tab v-for="item in topnav" :title="item.title" :key="item.id">
+          <!-- 内容 {{ item }} -->
+        </van-tab>
+      </van-tabs>
+    </van-sticky>
 
     <!-- 轮播图 -->
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -181,7 +188,9 @@ export default {
       this.$router.push("/user");
     },
     // 跳转详情
-    goDetail() {},
+    goDetail(id) {
+      this.$router.push("/detail/" + id);
+    },
   },
 
   created() {
@@ -198,6 +207,7 @@ export default {
   position: relative;
   display: flex;
   justify-content: space-around;
+  background-color: #fff;
 }
 .logo img {
   width: 80px;
@@ -214,6 +224,7 @@ export default {
 .toprig {
   padding-top: 10px;
   font-size: 30px;
+  background-color: #fff;
 }
 /* 头部navbar */
 .topnav {
