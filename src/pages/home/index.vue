@@ -13,8 +13,9 @@
         placeholder="请输入搜索关键词"
         class="topipt"
         @search="onSearch"
+        @clear="onClear"
       />
-      <van-icon name="friends-o" color="#999" class="toprig" />
+      <van-icon name="friends-o" color="#999" class="toprig" @click="gouser" />
     </div>
 
     <!-- nav -->
@@ -48,7 +49,12 @@
       @load="onLoad"
       class="lanlist"
     >
-      <li v-for="item in productlist" :key="item._id" class="productlist">
+      <li
+        v-for="item in productlist"
+        :key="item._id"
+        class="productlist"
+        @click="goDetail(item._id)"
+      >
         <p class="productimg"><img :src="item.coverImg" alt="" /></p>
         <p class="productBtm">
           <span>商品名{{ item.name }}</span>
@@ -146,10 +152,18 @@ export default {
       this.productlist.forEach((item) => {
         if (item.name.includes(val)) {
           seach.push(item);
+          this.productlist = seach;
         }
-        this.productlist = seach;
       });
     },
+    // 清除
+    onClear(e) {
+      console.log(e);
+      if (this.value == null) {
+        this.getproductlist();
+      }
+    },
+
     // 分类
     async classify() {
       const result = await get("/api/v1/products", {
@@ -162,6 +176,12 @@ export default {
         this.getproductlist();
       }
     },
+    // 跳转到个人中心
+    gouser() {
+      this.$router.push("/user");
+    },
+    // 跳转详情
+    goDetail() {},
   },
 
   created() {
