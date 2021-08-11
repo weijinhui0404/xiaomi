@@ -53,12 +53,12 @@
         v-for="item in productlist"
         :key="item._id"
         class="productlist"
-        @click="goDetail(item._id)"
+        @click="godetail(item._id)"
       >
         <p class="productimg"><img :src="item.coverImg" alt="" /></p>
         <p class="productBtm">
           <span>商品名{{ item.name }}</span>
-          <span class="liPrice">价格{{ item.price }}</span>
+          <span class="liPrice">价格{{ item.price / 100 }}</span>
           <button class="btn">立即购买</button>
         </p>
       </li>
@@ -181,7 +181,9 @@ export default {
       this.$router.push("/user");
     },
     // 跳转详情
-    goDetail() {},
+    godetail(id) {
+      this.$router.push("/detail/" + id);
+    },
   },
 
   created() {
