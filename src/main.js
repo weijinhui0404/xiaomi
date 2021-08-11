@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from "./router"
 import Vant from 'vant';
+import { AddressEdit } from 'vant';
+Vue.use(AddressEdit);
 import 'vant/lib/index.css';
 
 Vue.use(Vant);
