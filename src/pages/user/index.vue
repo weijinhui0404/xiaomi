@@ -34,14 +34,14 @@
       <div class="bottom-left">
         <span><van-icon name="map-marked" color="#66cccc"/></span>
       </div>
-      <div class="bottom-right">
+      <div class="bottom-right" @click="goaddress">
         <p>收货地址</p>
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
       <div class="bottom-left">
         <span><van-icon name="gem" color="#ffcc33"/></span>
       </div>
-      <div class="bottom-right tow">
+      <div class="bottom-right tow" @click="changeInfo">
         <p>修改信息</p>
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
@@ -73,6 +73,7 @@
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -101,8 +102,19 @@ export default {
       const result = await infoApi();
       console.log(result);
       this.nickName = result.data.nickName;
+<<<<<<< HEAD
       this.urlImg = result.data.avatar;
     },
+=======
+      this.urlImg = result.data.avatar
+    },
+    goaddress(){
+      this.$router.push("/address")
+    },
+    changeInfo(){
+      this.$router.push("/changeinfo")
+    }
+>>>>>>> 17723f88bdd0071e32e6482d077e6a227a7d56c5
   },
   created() {
     this.getInfo();
@@ -113,6 +125,7 @@ export default {
 <style scoped>
 .user {
   margin-bottom: 10px;
+  /* overflow-x:hidden; */
 }
 .top {
   width: 100%;
@@ -199,7 +212,9 @@ export default {
   height: 50px;
   background: #fff;
   padding-top: 10px;
-  padding-right: 24px;
+  padding-right: 15%;
+  float: left;
+  width: 5%;
 }
 .bottom span .van-icon::before {
   font-size: 36px;
@@ -213,7 +228,7 @@ export default {
   background: #fff;
 }
 .bottom .bottom-right {
-  width: 85%;
+  width: 75%;
   height: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   position: relative;
