@@ -32,9 +32,16 @@
 
 <script>
 import { Toast } from "vant";
+<<<<<<< HEAD
 import area from "../../assets/js/area.js";
 import { deletAddressApi } from "../../api/address";
 import { editAddressApi } from "../../api/address";
+=======
+import area from '../../assets/js/area.js';
+import {deletAddressApi} from "../../api/address"
+import {getOnlyAddressApi} from "../../api/address"
+import {editAddressApi} from "../../api/address"
+>>>>>>> 4b5d24f3936eff8c7adda6a07c89ba809c2380cb
 export default {
   components: {},
   data() {
@@ -52,9 +59,15 @@ export default {
     onClickLeft() {
       this.$router.push("/address");
     },
+<<<<<<< HEAD
     //通过id修改地址
     async addressEdit() {
       const result = await editAddressApi(this.id);
+=======
+     //通过id获取收货地址
+    async addressEdit(){
+      const result = await getOnlyAddressApi(this.id);
+>>>>>>> 4b5d24f3936eff8c7adda6a07c89ba809c2380cb
       console.log(result);
       console.log(result.data.receiver);
       this.info = result.data;
@@ -64,6 +77,7 @@ export default {
       //  console.log(content);
       //  console.log(content.name);
       //  console.log(content.province+content.city+content.addressDetail);
+<<<<<<< HEAD
 
       const result = await editAddressApi(this.id, {
         receiver: content.name,
@@ -74,6 +88,18 @@ export default {
       });
       console.log(result);
       Toast.success("地址修改成功");
+=======
+       //修改收货地址
+       const result = await editAddressApi(this.id,{
+          receiver:content.name,
+          mobile:content.tel,
+          regions:content.city,
+          address:content.province+content.city+content.addressDetail,
+          idDefault:content.isDefault,
+       })
+       console.log(result);
+       Toast.success("地址修改成功")
+>>>>>>> 4b5d24f3936eff8c7adda6a07c89ba809c2380cb
       //  this.$router.push("/address");
     },
     //删除操作
