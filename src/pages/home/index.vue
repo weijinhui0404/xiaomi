@@ -188,11 +188,8 @@ export default {
       this.$router.push("/user");
     },
     // 跳转详情
-<<<<<<< HEAD
-    godetail(id) {
-=======
     goDetail(id) {
->>>>>>> 4791a5f74788e6ef1e14efd7e44a6fa21c660117
+      // >>>>>>> 4791a5f74788e6ef1e14efd7e44a6fa21c660117
       this.$router.push("/detail/" + id);
     },
   },
