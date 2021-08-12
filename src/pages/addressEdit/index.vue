@@ -35,6 +35,7 @@
 import { Toast } from "vant";
 import area from '../../assets/js/area.js';
 import {deletAddressApi} from "../../api/address"
+import {getOnlyAddressApi} from "../../api/address"
 import {editAddressApi} from "../../api/address"
 export default {
   components: {},
@@ -53,22 +54,20 @@ export default {
     onClickLeft() {
       this.$router.push("/address");
     },
-     //通过id修改地址
+     //通过id获取收货地址
     async addressEdit(){
-      const result = await editAddressApi(this.id);
+      const result = await getOnlyAddressApi(this.id);
       console.log(result);
       console.log(result.data.receiver);
       this.info=result.data;
       
     },
     async onSave(content) {
-     
-       
       // Toast(this.searchResult);
       //  console.log(content);
       //  console.log(content.name);
       //  console.log(content.province+content.city+content.addressDetail);
-       
+       //修改收货地址
        const result = await editAddressApi(this.id,{
           receiver:content.name,
           mobile:content.tel,
