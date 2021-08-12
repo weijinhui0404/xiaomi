@@ -6,44 +6,43 @@
       left-arrow
       @click-left="onClickLeft"
     />
-   <div>
+    <div>
       <van-address-edit
-      :area-list="areaList"
-      :address-info="{
-            name: info.receiver,
-            tel: info.mobile,
-            addressDetail: info.address,
-            county:info.regions,
-            province:info.regions,
-          }"
-      show-postal
-      show-delete
-      show-set-default
-      show-search-result
-      :search-result="searchResult"
-      :area-columns-placeholder="['请选择', '请选择', '请选择']"
-      @save="onSave"
-      @delete="onDelete"
-      @change-detail="onChangeDetail"
-    />
-    
-   </div>
+        :area-list="areaList"
+        :address-info="{
+          name: info.receiver,
+          tel: info.mobile,
+          addressDetail: info.address,
+          county: info.regions,
+          province: info.regions,
+        }"
+        show-postal
+        show-delete
+        show-set-default
+        show-search-result
+        :search-result="searchResult"
+        :area-columns-placeholder="['请选择', '请选择', '请选择']"
+        @save="onSave"
+        @delete="onDelete"
+        @change-detail="onChangeDetail"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { Toast } from "vant";
-import area from '../../assets/js/area.js';
-import {deletAddressApi} from "../../api/address"
-import {editAddressApi} from "../../api/address"
+import area from "../../assets/js/area.js";
+import { deletAddressApi } from "../../api/address";
+import { editAddressApi } from "../../api/address";
 export default {
   components: {},
   data() {
     return {
-      areaList:area,
+      areaList: area,
       searchResult: [],
-      id:'',
-      info:[],
+      id: "",
+      info: [],
     };
   },
   computed: {},
@@ -53,36 +52,33 @@ export default {
     onClickLeft() {
       this.$router.push("/address");
     },
-     //通过id修改地址
-    async addressEdit(){
+    //通过id修改地址
+    async addressEdit() {
       const result = await editAddressApi(this.id);
       console.log(result);
       console.log(result.data.receiver);
-      this.info=result.data;
-      
+      this.info = result.data;
     },
     async onSave(content) {
-     
-       
       // Toast(this.searchResult);
       //  console.log(content);
       //  console.log(content.name);
       //  console.log(content.province+content.city+content.addressDetail);
-       
-       const result = await editAddressApi(this.id,{
-          receiver:content.name,
-          mobile:content.tel,
-          regions:content.city,
-          address:content.province+content.city+content.addressDetail,
-          idDefault:content.isDefault,
-       })
-       console.log(result);
-       Toast.success("地址修改成功")
+
+      const result = await editAddressApi(this.id, {
+        receiver: content.name,
+        mobile: content.tel,
+        regions: content.city,
+        address: content.province + content.city + content.addressDetail,
+        idDefault: content.isDefault,
+      });
+      console.log(result);
+      Toast.success("地址修改成功");
       //  this.$router.push("/address");
     },
     //删除操作
     async onDelete() {
-      const result = await deletAddressApi(this.id)
+      const result = await deletAddressApi(this.id);
       console.log(result);
     },
     onChangeDetail(val) {
@@ -99,12 +95,11 @@ export default {
     },
   },
   created() {
-    this.id=this.$route.query.id;
-    this.addressEdit()
+    this.id = this.$route.query.id;
+    this.addressEdit();
     // this.onSave()
   },
   mounted() {},
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
