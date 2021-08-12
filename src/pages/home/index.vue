@@ -65,13 +65,8 @@
         <p class="productimg"><img :src="item.coverImg" alt="" /></p>
         <p class="productBtm">
           <span>商品名{{ item.name }}</span>
-<<<<<<< HEAD
           <span class="liPrice">价格{{ item.price }}</span>
           <button class="btn" @click="goOrder">立即购买</button>
-=======
-          <span class="liPrice">价格{{ item.price / 100 }}</span>
-          <button class="btn">立即购买</button>
->>>>>>> master
         </p>
       </li>
     </van-list>
