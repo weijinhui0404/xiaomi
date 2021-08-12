@@ -4,7 +4,7 @@
       <div class="avatar">
         <img :src="urlImg" alt="" />
       </div>
-      <p @click="gologin">{{nickName}}</p>
+      <p @click="gologin">{{ nickName }}</p>
     </div>
 
     <div class="order">
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-     <div class="bottom">
+    <div class="bottom">
       <div class="bottom-left">
         <span><van-icon name="setting" color="#999"/></span>
       </div>
@@ -73,19 +73,18 @@
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import {infoApi} from "../../api/user"
+import { infoApi } from "../../api/user";
 export default {
   components: {},
   data() {
     return {
       urlImg: "https://m.mi.com/static/img/avatar.76a75b8f17.png",
-      nickName:"登录/注册",
-      userName:null,
+      nickName: "登录/注册",
+      userName: null,
     };
   },
   computed: {},
@@ -95,31 +94,31 @@ export default {
     goOrder() {
       this.$router.push("/order");
     },
-    gologin(){
+    gologin() {
       this.$router.push("/login");
+    },
+    goaddress(){
+      this.$router.push("/address");
+    },
+    changeInfo(){
+      this.$router.push("/changeinfo");
     },
     //获取用户信息
     async getInfo(){
       const result = await infoApi()
       console.log(result);
       this.nickName = result.data.nickName;
-      this.urlImg = result.data.avatar
+      this.urlImg = result.data.avatar;
     },
-    goaddress(){
-      this.$router.push("/address")
-    },
-    changeInfo(){
-      this.$router.push("/changeinfo")
-    }
   },
   created() {
-    this.getInfo()
+    this.getInfo();
   },
   mounted() {},
 };
 </script>
 <style scoped>
-.user{
+.user {
   margin-bottom: 10px;
   /* overflow-x:hidden; */
 }
@@ -202,7 +201,7 @@ export default {
   /* padding-bottom: 15px; */
   background: #f5f5f5;
   font-size: 20px;
-  color: rgba(0,0,0,.87);
+  color: rgba(0, 0, 0, 0.87);
 }
 .bottom .bottom-left {
   height: 50px;

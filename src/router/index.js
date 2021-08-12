@@ -40,6 +40,7 @@ const router = new VueRouter({
         },
         {
             path:"/mi",
+            name:"mi",
             component:()=>import("../pages/mi"),
             meta: {
                 showTab: true,
@@ -67,6 +68,13 @@ const router = new VueRouter({
               },
         },
         {
+            path:"/fabu",
+            component:()=>import("../pages/fabu"),
+            meta: {
+                showTab: false,
+              },
+        },
+        {
             path:"/order",
             component:()=>import("../pages/order"),
             meta: {
@@ -83,6 +91,13 @@ const router = new VueRouter({
         {
             path:"/addressAdd",
             component:()=>import("../pages/addressAdd"),
+            meta: {
+                showTab: false,
+              },
+        },
+        {
+            path:"/addressEdit",
+            component:()=>import("../pages/addressEdit"),
             meta: {
                 showTab: false,
               },

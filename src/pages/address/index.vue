@@ -49,21 +49,15 @@ export default {
      onAdd() {
       this.$router.push("/addressAdd");
     },
-    async onEdit(index) {
+    onEdit(index) {
       console.log(index.id);
       let id = index.id;
       this.$router.push({
-        path:"/addressAdd",
+        path:"/addressEdit",
         query:{
           id,
         }
       })
-      //删除操作
-      // console.log(id);
-      // const result = await deletAddressApi(id)
-      // console.log(result);
-      // const res = await post("/api/v1/addresses/id:="+id)
-      // console.log(res);
     },
     async getAddress(){
       const result = await getAddressApi();
