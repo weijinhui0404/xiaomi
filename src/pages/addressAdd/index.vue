@@ -84,7 +84,12 @@ export default {
     // async addressEdit(id){
     //   const result = await editAddressApi(id);
     //   console.log(result);
-    // }
+    // },
+      //删除操作
+      // console.log(id);
+      // const result = await deletAddressApi(id)
+      // console.log(result);
+
   },
   created() {
     // this.id=this.$route.query.id;

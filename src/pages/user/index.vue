@@ -98,6 +98,7 @@ export default {
     gologin(){
       this.$router.push("/login");
     },
+    //获取用户信息
     async getInfo(){
       const result = await infoApi()
       console.log(result);
