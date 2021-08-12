@@ -96,6 +96,13 @@ const router = new VueRouter({
               },
         },
         {
+            path:"/addressEdit",
+            component:()=>import("../pages/addressEdit"),
+            meta: {
+                showTab: false,
+              },
+        },
+        {
             path:"/changeinfo",
             component:()=>import("../pages/changeinfo"),
             meta: {

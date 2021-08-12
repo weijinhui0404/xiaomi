@@ -97,8 +97,15 @@ export default {
     gologin() {
       this.$router.push("/login");
     },
-    async getInfo() {
-      const result = await infoApi();
+    goaddress(){
+      this.$router.push("/address");
+    },
+    changeInfo(){
+      this.$router.push("/changeinfo");
+    },
+    //获取用户信息
+    async getInfo(){
+      const result = await infoApi()
       console.log(result);
       this.nickName = result.data.nickName;
       this.urlImg = result.data.avatar;

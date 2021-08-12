@@ -1,5 +1,11 @@
 <template>
   <div class="">
+    <van-nav-bar
+      title="我的购物车"
+      left-text="返回"
+      right-text="按钮"
+      left-arrow
+    />
     <div class="goods-list">
       <div class="goods" v-for="(data, i) in list" :key="data._id + i">
         <!-- 自己添加checked -->
@@ -13,13 +19,16 @@
         />
         <div class="goods-info">
           <p>{{ data.product.name }}</p>
-          <span>￥{{ data.product.price }}</span>
-          <span @click="updatePro(data.product._id, 1)">+</span
-          >{{ data.quantity }}
-          <span @click="data.quantity > 1 && updatePro(data.product._id, -1)"
-            >-</span
+          价格:<span>￥{{ data.product.price }}</span
+          >&nbsp;数量:<button
+            @click="data.quantity > 1 && updatePro(data.product._id, -1)"
           >
-          <span v-if="data.checked" @click="del(data._id)">删除</span>
+            -</button
+          >{{ data.quantity }}
+          <button @click="updatePro(data.product._id, 1)">+</button>
+          <button v-if="data.checked" @click="del(data._id)" class="but">
+            删除该商品
+          </button>
         </div>
       </div>
     </div>
@@ -139,12 +148,16 @@ export default {
 };
 </script>
 <style scoped>
+body {
+  background: #ccc;
+}
 .goods {
-  height: 100px;
+  height: 120px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-top: 20px;
   margin-bottom: 15px;
   margin-left: 5px;
 }
@@ -154,12 +167,18 @@ export default {
 }
 .goods-img {
   width: 30%;
-  height: 80px;
+  height: 120px;
   border: 1px solid #ccc;
   margin-left: 5px;
 }
 .goods-info {
   width: 100%;
+  height: 120px;
   margin-left: 5px;
+}
+.but {
+  margin-top: 5px;
+  margin-left: 50px;
+  color: red;
 }
 </style>

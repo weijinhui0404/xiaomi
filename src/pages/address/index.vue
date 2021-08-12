@@ -21,7 +21,7 @@
 
 <script>
 // import { Toast } from 'vant';deletAddressApi
-import {getAddressApi ,deletAddressApi} from "../../api/address"
+import {getAddressApi } from "../../api/address"
 // import {post} from "../../utils/request"
 export default {
   components: {},
@@ -49,21 +49,15 @@ export default {
      onAdd() {
       this.$router.push("/addressAdd");
     },
-    async onEdit(index) {
+    onEdit(index) {
       console.log(index.id);
       let id = index.id;
-      // this.$router.push({
-      //   path:"/addressAdd",
-      //   query:{
-      //     id,
-      //   }
-      // })
-      //删除操作
-      console.log(id);
-      const result = await deletAddressApi(id)
-      console.log(result);
-      // const res = await post("/api/v1/addresses/id:="+id)
-      // console.log(res);
+      this.$router.push({
+        path:"/addressEdit",
+        query:{
+          id,
+        }
+      })
     },
     async getAddress(){
       const result = await getAddressApi();
