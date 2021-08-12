@@ -140,6 +140,9 @@ export default {
         orderDetails: this.selectgoods,
       });
       console.log(result);
+      if(result.data.code=="success"){
+        this.$router.push("/order");
+      }
     },
     onClickLeft() {
       this.$router.push("/home");
