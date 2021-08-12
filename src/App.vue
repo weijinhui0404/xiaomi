@@ -20,14 +20,19 @@
 export default {
   name: "App",
   components: {},
+ 
   data() {
     return {
+     
       active: 0,
     //   icon: {
     //     active: "https://img01.yzcdn.cn/vant/user-active.png",
     //     inactive: "https://img01.yzcdn.cn/vant/user-inactive.png",
     //   },
     };
+  },
+  methods:{
+   
   },
 };
 </script>

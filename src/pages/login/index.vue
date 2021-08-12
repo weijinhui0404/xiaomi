@@ -1,7 +1,12 @@
 <template>
   <div class="login">
      <!-- <van-icon name="arrow-left" size="30" /> -->
-    
+     <van-nav-bar
+      title="修改密码"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft"
+    />
     <h3>小米商城账号登录</h3>
     <div class="top">
      
@@ -51,6 +56,9 @@ export default {
   watch: {},
 
   methods: {
+      onClickLeft() {
+      this.$router.push("/user");
+    },
     async onSubmit(){
       const result = await loginApi({
         userName:this.username,

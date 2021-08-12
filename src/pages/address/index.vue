@@ -50,7 +50,9 @@ export default {
       this.$router.push("/addressAdd");
     },
     onEdit(index) {
-      console.log(index.id);
+      console.log(index);
+      // console.log(item);
+      // let id = item.id;
       let id = index.id;
       this.$router.push({
         path:"/addressEdit",

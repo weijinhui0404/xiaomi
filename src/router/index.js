@@ -109,6 +109,13 @@ const router = new VueRouter({
                 showTab: false,
               },
         },
+        {
+            path:"/changepassword",
+            component:()=>import("../pages/changepassword"),
+            meta: {
+                showTab: false,
+              },
+        },
     ]
 })
 

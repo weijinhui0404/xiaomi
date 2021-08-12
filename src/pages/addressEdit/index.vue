@@ -15,6 +15,7 @@
             addressDetail: info.address,
             county:info.regions,
             province:info.regions,
+            areaCode:'888888',
           }"
       show-postal
       show-delete
@@ -63,6 +64,7 @@ export default {
       
     },
     async onSave(content) {
+      console.log(content);
       // Toast(this.searchResult);
       //  console.log(content);
       //  console.log(content.name);
@@ -77,12 +79,13 @@ export default {
        })
        console.log(result);
        Toast.success("地址修改成功")
-      //  this.$router.push("/address");
+       this.$router.push("/address");
     },
     //删除操作
     async onDelete() {
       const result = await deletAddressApi(this.id)
       console.log(result);
+      this.$router.push("/address");
     },
     onChangeDetail(val) {
       if (val) {

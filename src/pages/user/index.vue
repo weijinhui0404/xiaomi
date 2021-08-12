@@ -32,14 +32,14 @@
     </div>
     <div class="bottom">
       <div class="bottom-left">
-        <span><van-icon name="map-marked" color="#66cccc"/></span>
+        <span><van-icon name="map-marked" color="#66cccc" /></span>
       </div>
       <div class="bottom-right" @click="goaddress">
         <p>收货地址</p>
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
       <div class="bottom-left">
-        <span><van-icon name="gem" color="#ffcc33"/></span>
+        <span><van-icon name="gem" color="#ffcc33" /></span>
       </div>
       <div class="bottom-right tow" @click="changeInfo">
         <p>修改信息</p>
@@ -49,14 +49,14 @@
 
     <div class="bottom">
       <div class="bottom-left">
-        <span><van-icon name="point-gift" color="#ff9933"/></span>
+        <span><van-icon name="point-gift" color="#ff9933" /></span>
       </div>
-      <div class="bottom-right">
-        <p>礼物兑换</p>
+      <div class="bottom-right" @click="changepassword">
+        <p>修改密码</p>
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
       <div class="bottom-left">
-        <span><van-icon name="like" color="#ff6666"/></span>
+        <span><van-icon name="like" color="#ff6666" /></span>
       </div>
       <div class="bottom-right tow">
         <p>服务中心</p>
@@ -66,9 +66,9 @@
 
     <div class="bottom">
       <div class="bottom-left">
-        <span><van-icon name="setting" color="#999"/></span>
+        <span><van-icon name="setting" color="#999" /></span>
       </div>
-      <div class="bottom-right tow">
+      <div class="bottom-right tow" @click="loginOut">
         <p>退出登录</p>
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
@@ -78,6 +78,8 @@
 
 <script>
 import { infoApi } from "../../api/user";
+import { removeToken } from "../../utils/auth";
+import { Dialog } from 'vant';
 export default {
   components: {},
   data() {
@@ -97,15 +99,34 @@ export default {
     gologin() {
       this.$router.push("/login");
     },
-    goaddress(){
+    goaddress() {
       this.$router.push("/address");
     },
-    changeInfo(){
+    changeInfo() {
       this.$router.push("/changeinfo");
     },
+    changepassword() {
+      this.$router.push("/changepassword");
+    },
+    //退出登录
+    loginOut() {
+      console.log(11);
+      Dialog.confirm({
+        title: "确定退出吗",
+        message: "退出之后有些功能无法使用哦",
+      })
+        .then(() => {
+          removeToken();
+          location.reload()
+        })
+        .catch(() => {
+          // on cancel
+        });
+      // removeToken();
+    },
     //获取用户信息
-    async getInfo(){
-      const result = await infoApi()
+    async getInfo() {
+      const result = await infoApi();
       console.log(result);
       this.nickName = result.data.nickName;
       this.urlImg = result.data.avatar;
@@ -147,7 +168,7 @@ export default {
   top: 15px;
   left: 110px;
   color: beige;
-  font-size: 18px;
+  font-size: 16px;
 }
 .order {
   width: 100%;

@@ -2,25 +2,31 @@
   <div class="change">
     <!-- <h3>信息修改</h3> -->
      <van-nav-bar
-      title="修改个人信息"
+      title="修改密码"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
     />
     <div class="change-top">
-      <van-uploader :after-read="afterRead" v-if="!urlImg" />
-      <img :src="urlImg" alt="" v-if="urlImg" />
+    
       <!-- 表单 -->
 
       <van-form @submit="onSubmit">
         <van-field
-          v-model="nickname"
-          name="nickName"
-          label="昵称"
-          placeholder="nickname"
-          :rules="[{ required: true, message: '请填写昵称' }]"
+          v-model="oldPassword"
+          name="oldPassword"
+          label="旧密码"
+          placeholder="旧密码"
+          :rules="[{ required: true, message: '请填写旧密码' }]"
         />
-
+        <van-field
+        v-model="password"
+        type="password"
+        name="password"
+        label="新密码"
+        placeholder="新密码"
+        :rules="[{ required: true, message: '请填写密码' }]"
+      />
         <div style="margin: 16px">
           <van-button round block type="info" native-type="submit"
             >保存</van-button
@@ -33,13 +39,13 @@
 
 <script>
 import { Toast } from "vant";
-import { infoApi,changeInfoApi } from "../../api/user";
+import { infoApi,changePwdApi } from "../../api/user";
 export default {
   components: {},
   data() {
     return {
-      urlImg: "",
-      nickname: "",
+      oldPassword: "",
+      password:"",
     };
   },
   computed: {},
@@ -49,24 +55,22 @@ export default {
      onClickLeft() {
       this.$router.push("/user");
     },
-     afterRead(file) {
-      // 此时可以自行将文件上传至服务器
-      console.log(file);
-      this.urlImg = file.content;
-    },
+    
     async onSubmit() {
-     const result = await changeInfoApi({nickName:this.nickname,avatar:this.urlImg})
+     const result = await changePwdApi({oldPassword:this.oldPassword,password:this.password})
     console.log(result);
     if(result.data.code=="success"){
-        Toast.success("修改成功")
+        Toast.success("修改密码成功")
         this.$router.push("/user")
+    }else{
+        Toast.fail(result.data.message);
     }
     },
     //获取用户信息
     async getInfo() {
       const result = await infoApi();
       console.log(result);
-      this.nickname = result.data.nickName;
+      // this.nickname = result.data.nickName;
       // this.urlImg = result.data.avatar;
      
     },
@@ -113,7 +117,7 @@ export default {
   margin-right: -30px;
 }
 .change-top .van-cell {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   margin-left: 90px;
   width: 60%;
   font-size: 18px;
