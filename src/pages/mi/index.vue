@@ -187,9 +187,7 @@ export default {
     // 真假数据保存到本地;
     var str = localStorage.getItem("list");
     if (str == null) {
-      if (JSON.parse(str).length == this.list.length) {
-        localStorage.setItem("list", JSON.stringify(this.list));
-      }
+      localStorage.setItem("list", JSON.stringify(this.list));
     } else {
       this.list = JSON.parse(localStorage.getItem("list"));
       if (this.$route.query.imgs) {

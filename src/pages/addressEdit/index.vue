@@ -6,8 +6,9 @@
       left-arrow
       @click-left="onClickLeft"
     />
-   <div>
+    <div>
       <van-address-edit
+<<<<<<< HEAD
       :area-list="areaList"
       :address-info="{
             name: info.receiver,
@@ -29,23 +30,45 @@
     />
     
    </div>
+=======
+        :area-list="areaList"
+        :address-info="{
+          name: info.receiver,
+          tel: info.mobile,
+          addressDetail: info.address,
+          county: info.regions,
+          province: info.regions,
+        }"
+        show-postal
+        show-delete
+        show-set-default
+        show-search-result
+        :search-result="searchResult"
+        :area-columns-placeholder="['请选择', '请选择', '请选择']"
+        @save="onSave"
+        @delete="onDelete"
+        @change-detail="onChangeDetail"
+      />
+    </div>
+>>>>>>> ef87c4c6432c439fb18453628f944f95d8ae8360
   </div>
 </template>
 
 <script>
 import { Toast } from "vant";
-import area from '../../assets/js/area.js';
-import {deletAddressApi} from "../../api/address"
-import {getOnlyAddressApi} from "../../api/address"
-import {editAddressApi} from "../../api/address"
+
+import area from "../../assets/js/area.js";
+import { deletAddressApi } from "../../api/address";
+import { getOnlyAddressApi } from "../../api/address";
+import { editAddressApi } from "../../api/address";
 export default {
   components: {},
   data() {
     return {
-      areaList:area,
+      areaList: area,
       searchResult: [],
-      id:'',
-      info:[],
+      id: "",
+      info: [],
     };
   },
   computed: {},
@@ -55,13 +78,13 @@ export default {
     onClickLeft() {
       this.$router.push("/address");
     },
-     //通过id获取收货地址
-    async addressEdit(){
+
+    //通过id获取收货地址
+    async addressEdit() {
       const result = await getOnlyAddressApi(this.id);
       console.log(result);
       console.log(result.data.receiver);
-      this.info=result.data;
-      
+      this.info = result.data;
     },
     async onSave(content) {
       console.log(content);
@@ -69,6 +92,7 @@ export default {
       //  console.log(content);
       //  console.log(content.name);
       //  console.log(content.province+content.city+content.addressDetail);
+<<<<<<< HEAD
        //修改收货地址
        const result = await editAddressApi(this.id,{
           receiver:content.name,
@@ -80,10 +104,24 @@ export default {
        console.log(result);
        Toast.success("地址修改成功")
        this.$router.push("/address");
+=======
+
+      //修改收货地址
+      const result = await editAddressApi(this.id, {
+        receiver: content.name,
+        mobile: content.tel,
+        regions: content.city,
+        address: content.province + content.city + content.addressDetail,
+        idDefault: content.isDefault,
+      });
+      console.log(result);
+      Toast.success("地址修改成功");
+      //  this.$router.push("/address");
+>>>>>>> ef87c4c6432c439fb18453628f944f95d8ae8360
     },
     //删除操作
     async onDelete() {
-      const result = await deletAddressApi(this.id)
+      const result = await deletAddressApi(this.id);
       console.log(result);
       this.$router.push("/address");
     },
@@ -101,12 +139,11 @@ export default {
     },
   },
   created() {
-    this.id=this.$route.query.id;
-    this.addressEdit()
+    this.id = this.$route.query.id;
+    this.addressEdit();
     // this.onSave()
   },
   mounted() {},
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

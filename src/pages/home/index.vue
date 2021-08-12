@@ -56,17 +56,12 @@
       @load="onLoad"
       class="lanlist"
     >
-      <li
-        v-for="item in productlist"
-        :key="item._id"
-        class="productlist"
-        @click.stop="godetail(item._id)"
-      >
+      <li v-for="item in productlist" :key="item._id" class="productlist">
         <p class="productimg"><img :src="item.coverImg" alt="" /></p>
         <p class="productBtm">
           <span>商品名{{ item.name }}</span>
           <span class="liPrice">价格{{ item.price }}</span>
-          <button class="btn" @click.stop="goOrder">立即购买</button>
+          <button class="btn" @click.stop="godetail(item._id)">立即购买</button>
         </p>
       </li>
     </van-list>
@@ -105,7 +100,7 @@ export default {
         {
           id: 1,
           img:
-            "https://dss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/293416286_1043890338_660_200.jpg",
+            "https://img0.baidu.com/it/u=3418171365,611255457&fm=26&fmt=auto&gp=0.jpg",
         },
         {
           id: 2,
@@ -187,14 +182,10 @@ export default {
     gouser() {
       this.$router.push("/user");
     },
-    // 跳转详情
+    // 跳转详情(立即购买按钮)
     godetail(id) {
       // >>>>>>> 4791a5f74788e6ef1e14efd7e44a6fa21c660117
       this.$router.push("/detail/" + id);
-    },
-    // 立即购买（跳提交订单页）
-    goOrder() {
-      this.$router.push("/fenlei");
     },
   },
 

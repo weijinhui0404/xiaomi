@@ -1,10 +1,12 @@
 <template>
   <div class="">
     <van-nav-bar
-      title="我的购物车"
-      left-text="返回"
-      right-text="按钮"
+      title="商品详情"
+      left-text="返回首页"
+      right-text="个人中心"
       left-arrow
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
     />
     <div class="goods-list">
       <div class="goods" v-for="(data, i) in list" :key="data._id + i">
@@ -138,6 +140,12 @@ export default {
         orderDetails: this.selectgoods,
       });
       console.log(result);
+    },
+    onClickLeft() {
+      this.$router.push("/home");
+    },
+    onClickRight() {
+      this.$router.push("/user");
     },
   },
   created() {
