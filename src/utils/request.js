@@ -1,6 +1,6 @@
 import axios from "axios";
-import {BASE_URL}  from "./tools"
-import {getToken}  from  "./auth"
+import { BASE_URL } from "./tools";
+import { getToken } from "./auth";
 const instance = axios.create({
   baseURL: BASE_URL,
   tiemout: 5000,
@@ -27,7 +27,11 @@ instance.interceptors.response.use(
   }
 );
 
-export const get = (url, params) => instance.get(url, { params });
+export const get = (url, params) =>
+  instance.get(url, {
+    params,
+  });
 export const post = (url, data) => instance.post(url, data);
 export const delet = (url, params) => instance.delete(url, { params });
+export const put = (url, params) => instance.put(url, { params });
 export default instance;

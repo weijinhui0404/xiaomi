@@ -4,7 +4,7 @@
       <div class="avatar">
         <img :src="urlImg" alt="" />
       </div>
-      <p @click="gologin">{{nickName}}</p>
+      <p @click="gologin">{{ nickName }}</p>
     </div>
 
     <div class="order">
@@ -34,14 +34,14 @@
       <div class="bottom-left">
         <span><van-icon name="map-marked" color="#66cccc"/></span>
       </div>
-      <div class="bottom-right">
+      <div class="bottom-right" @click="goaddress">
         <p>收货地址</p>
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
       <div class="bottom-left">
         <span><van-icon name="gem" color="#ffcc33"/></span>
       </div>
-      <div class="bottom-right tow">
+      <div class="bottom-right tow" @click="changeInfo">
         <p>修改信息</p>
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-     <div class="bottom">
+    <div class="bottom">
       <div class="bottom-left">
         <span><van-icon name="setting" color="#999"/></span>
       </div>
@@ -77,14 +77,14 @@
 </template>
 
 <script>
-import {infoApi} from "../../api/user"
+import { infoApi } from "../../api/user";
 export default {
   components: {},
   data() {
     return {
       urlImg: "https://m.mi.com/static/img/avatar.76a75b8f17.png",
-      nickName:"登录/注册",
-      userName:null,
+      nickName: "登录/注册",
+      userName: null,
     };
   },
   computed: {},
@@ -94,25 +94,26 @@ export default {
     goOrder() {
       this.$router.push("/order");
     },
-    gologin(){
+    gologin() {
       this.$router.push("/login");
     },
-    async getInfo(){
-      const result = await infoApi()
+    async getInfo() {
+      const result = await infoApi();
       console.log(result);
       this.nickName = result.data.nickName;
-      this.urlImg = result.data.avatar
-    }
+      this.urlImg = result.data.avatar;
+    },
   },
   created() {
-    this.getInfo()
+    this.getInfo();
   },
   mounted() {},
 };
 </script>
 <style scoped>
-.user{
+.user {
   margin-bottom: 10px;
+  /* overflow-x:hidden; */
 }
 .top {
   width: 100%;
@@ -193,13 +194,15 @@ export default {
   /* padding-bottom: 15px; */
   background: #f5f5f5;
   font-size: 20px;
-  color: rgba(0,0,0,.87);
+  color: rgba(0, 0, 0, 0.87);
 }
 .bottom .bottom-left {
   height: 50px;
   background: #fff;
   padding-top: 10px;
-  padding-right: 24px;
+  padding-right: 15%;
+  float: left;
+  width: 5%;
 }
 .bottom span .van-icon::before {
   font-size: 36px;
@@ -213,7 +216,7 @@ export default {
   background: #fff;
 }
 .bottom .bottom-right {
-  width: 85%;
+  width: 75%;
   height: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   position: relative;

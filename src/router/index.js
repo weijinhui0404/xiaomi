@@ -81,6 +81,27 @@ const router = new VueRouter({
                 showTab: false,
               },
         },
+        {
+            path:"/address",
+            component:()=>import("../pages/address"),
+            meta: {
+                showTab: false,
+              },
+        },
+        {
+            path:"/addressAdd",
+            component:()=>import("../pages/addressAdd"),
+            meta: {
+                showTab: false,
+              },
+        },
+        {
+            path:"/changeinfo",
+            component:()=>import("../pages/changeinfo"),
+            meta: {
+                showTab: false,
+              },
+        },
     ]
 })
 

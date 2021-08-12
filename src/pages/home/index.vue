@@ -60,13 +60,18 @@
         v-for="item in productlist"
         :key="item._id"
         class="productlist"
-        @click="goDetail(item._id)"
+        @click="godetail(item._id)"
       >
         <p class="productimg"><img :src="item.coverImg" alt="" /></p>
         <p class="productBtm">
           <span>商品名{{ item.name }}</span>
+<<<<<<< HEAD
           <span class="liPrice">价格{{ item.price }}</span>
           <button class="btn" @click="goOrder">立即购买</button>
+=======
+          <span class="liPrice">价格{{ item.price / 100 }}</span>
+          <button class="btn">立即购买</button>
+>>>>>>> master
         </p>
       </li>
     </van-list>
@@ -188,7 +193,8 @@ export default {
       this.$router.push("/user");
     },
     // 跳转详情
-    goDetail(id) {
+    godetail(id) {
+      // >>>>>>> 4791a5f74788e6ef1e14efd7e44a6fa21c660117
       this.$router.push("/detail/" + id);
     },
     // 立即购买（跳提交订单页）
