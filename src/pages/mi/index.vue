@@ -1,7 +1,7 @@
 <template>
   <div class="mi">
     <div class="fff">
-      <img class="img1" :src="user.avatar" alt="" />
+      <img class="img1" :src="user.avatar" alt="" @click="goUser" />
       <van-tabs v-model="active" class="aaa" @click="onClick">
         <van-tab title="关注"> </van-tab>
         <van-tab title="广场"> </van-tab>
@@ -18,16 +18,19 @@
           <span>发布</span>
         </div>
         <img
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.tuicool.com%2FQJ3IvqI.png%21web&refer=http%3A%2F%2Fimg1.tuicool.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631270314&t=455cfdff48719ae8da17d7b6bcb8be8d"
+          src="https://img1.baidu.com/it/u=2722680213,1355660551&fm=26&fmt=auto&gp=0.jpg"
           alt=""
           width="100%"
         />
         <ul>
-          <li v-for="(item, index) in list" :key="item.id + index">
-            <p class="flx">
-              <img :src="user.avatar" alt="" width="30" height="30" />
-              <span>{{ user.nickName }}</span>
-            </p>
+          <li v-for="(item, index) in list" :key="index">
+            <div class="flx">
+              <p class="h">
+                <img :src="user.avatar" alt="" width="30" height="30" />
+                <span>{{ user.nickName }}</span>
+              </p>
+              <van-icon name="more-o" class="delicon" @click="jubao" />
+            </div>
             <div class="text">
               <span>
                 {{ item.str }}
@@ -45,7 +48,7 @@
                 />
                 <van-icon name="chat-o" @click="showPopup" />
 
-                <van-icon name="thumb-circle-o" />
+                <van-icon name="thumb-circle-o" @click="tan" />
               </p>
             </div>
           </li>
@@ -53,10 +56,30 @@
             v-model="show"
             round
             position="bottom"
-            :style="{ height: '60%' }"
+            :style="{ height: '35%' }"
             overlay
-            >内容</van-popup
           >
+            <p class="p1">
+              <span class="span">天上的鱼：</span
+              ><span class="span2">上辈子作恶多端 这辈子早起上班</span>
+            </p>
+            <p class="p1">
+              <span class="span">海里的鸟：</span
+              ><span class="span2">天气炎热 想玩水的朋友可以来我家洗碗</span>
+            </p>
+            <p class="p1">
+              <span class="span">树上的虾：</span
+              ><span class="span2">绝绝子<van-icon name="good-job"/></span>
+            </p>
+            <p class="p1">
+              <span class="span">窗外的雪：</span
+              ><span class="span2">666<van-icon name="good-job"/></span>
+            </p>
+            <p class="p1">
+              <span class="span">门外的他：</span
+              ><span class="span2">999<van-icon name="like"/></span>
+            </p>
+          </van-popup>
         </ul>
       </div>
     </div>
@@ -64,8 +87,8 @@
 </template>
 
 <script>
-import { Toast } from "vant";
 import { get } from "../../utils/request";
+import { Toast } from "vant";
 export default {
   components: {},
   data() {
@@ -85,14 +108,14 @@ export default {
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi2.w.yun.hjfile.cn%2Fdoc%2F201412%2F73c85ef4aca048a3a1b71a88a62a8f2a.jpg&refer=http%3A%2F%2Fi2.w.yun.hjfile.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631271222&t=c6a455b1d1273777b86483ac4424845b",
         },
         {
-          id: 2,
+          id: 1,
           str:
             "情人节表白，人家不听；愚人节表白，人家不信；清明节表白，人家不应；",
           imgUrl:
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi2.w.yun.hjfile.cn%2Fdoc%2F201412%2F73c85ef4aca048a3a1b71a88a62a8f2a.jpg&refer=http%3A%2F%2Fi2.w.yun.hjfile.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631271222&t=c6a455b1d1273777b86483ac4424845b",
         },
         {
-          id: 3,
+          id: 1,
           str: "七夕你要送我什么？“我送你离开千里之外”",
           imgUrl:
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi2.w.yun.hjfile.cn%2Fdoc%2F201412%2F73c85ef4aca048a3a1b71a88a62a8f2a.jpg&refer=http%3A%2F%2Fi2.w.yun.hjfile.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631271222&t=c6a455b1d1273777b86483ac4424845b",
@@ -140,19 +163,43 @@ export default {
       console.log(res);
       this.user = res.data;
     },
+    // 评论
     showPopup() {
       this.show = true;
     },
+    // 点赞提示
+    tan() {
+      Toast({
+        message: "谢谢你这么好看还赞我",
+        icon: "flower-o",
+      });
+    },
+    // 点击头像到个人页面
+    goUser() {
+      this.$router.push("/user");
+    },
+    // 举报
+    jubao() {},
   },
   created() {
     this.getmine();
-    console.log(JSON.parse(this.$route.query.imgs));
-    if (this.$route.query) {
-      this.list.push({
-        id: 1,
-        imgUrl: JSON.parse(this.$route.query.imgs),
-        str: this.$route.query.str,
-      });
+    // console.log(JSON.parse(this.$route.query.imgs));
+    // 真假数据保存到本地;
+    var str = localStorage.getItem("list");
+    if (str == null) {
+      if (JSON.parse(str).length == this.list.length) {
+        localStorage.setItem("list", JSON.stringify(this.list));
+      }
+    } else {
+      this.list = JSON.parse(localStorage.getItem("list"));
+      if (this.$route.query.imgs) {
+        this.list.unshift({
+          id: 1,
+          imgUrl: JSON.parse(this.$route.query.imgs)[0].content,
+          str: this.$route.query.str,
+        });
+      }
+      localStorage.setItem("list", JSON.stringify(this.list));
     }
   },
   mounted() {},
@@ -177,6 +224,8 @@ export default {
 .flx {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 .text {
   width: 80%;
@@ -207,9 +256,25 @@ export default {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  z-index: 99999;
+  z-index: 0;
 }
 .big {
   font-size: 30px;
+}
+.p1 {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px 0;
+}
+.span {
+  float: left;
+}
+.span2 {
+  width: 60%;
+  float: left;
+}
+.h {
+  display: flex;
+  align-items: center;
 }
 </style>

@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { Toast } from "vant";
+
 export default {
   components: {},
   data() {
@@ -42,6 +44,7 @@ export default {
     },
     //   发布
     onClickRight() {
+      Toast("发布成功");
       this.$router.push({
         name: "mi",
         query: {

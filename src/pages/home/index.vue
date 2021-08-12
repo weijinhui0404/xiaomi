@@ -60,13 +60,13 @@
         v-for="item in productlist"
         :key="item._id"
         class="productlist"
-        @click="godetail(item._id)"
+        @click.stop="godetail(item._id)"
       >
         <p class="productimg"><img :src="item.coverImg" alt="" /></p>
         <p class="productBtm">
           <span>商品名{{ item.name }}</span>
           <span class="liPrice">价格{{ item.price }}</span>
-          <button class="btn" @click="goOrder">立即购买</button>
+          <button class="btn" @click.stop="goOrder">立即购买</button>
         </p>
       </li>
     </van-list>
@@ -193,7 +193,9 @@ export default {
       this.$router.push("/detail/" + id);
     },
     // 立即购买（跳提交订单页）
-    goOrder() {},
+    goOrder() {
+      this.$router.push("/fenlei");
+    },
   },
 
   created() {
