@@ -73,7 +73,6 @@
         <div class="icon-right"><van-icon name="arrow" size="30" /></div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -102,19 +101,8 @@ export default {
       const result = await infoApi();
       console.log(result);
       this.nickName = result.data.nickName;
-<<<<<<< HEAD
       this.urlImg = result.data.avatar;
     },
-=======
-      this.urlImg = result.data.avatar
-    },
-    goaddress(){
-      this.$router.push("/address")
-    },
-    changeInfo(){
-      this.$router.push("/changeinfo")
-    }
->>>>>>> 17723f88bdd0071e32e6482d077e6a227a7d56c5
   },
   created() {
     this.getInfo();

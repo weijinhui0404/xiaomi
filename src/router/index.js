@@ -40,6 +40,7 @@ const router = new VueRouter({
         },
         {
             path:"/mi",
+            name:"mi",
             component:()=>import("../pages/mi"),
             meta: {
                 showTab: true,
@@ -62,6 +63,13 @@ const router = new VueRouter({
         {
             path:"/detail/:id",
             component:()=>import("../pages/detail"),
+            meta: {
+                showTab: false,
+              },
+        },
+        {
+            path:"/fabu",
+            component:()=>import("../pages/fabu"),
             meta: {
                 showTab: false,
               },
