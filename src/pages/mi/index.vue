@@ -146,17 +146,13 @@ export default {
   },
   created() {
     this.getmine();
-    // console.log());
-    console.log(this.$route.query);
-    if (!this.$route.query) {
-      var sss = JSON.parse(this.$route.query);
+    console.log(JSON.parse(this.$route.query.imgs));
+    if (this.$route.query) {
       this.list.push({
         id: 1,
-        imgUrl: sss.imgs[0].content,
-        str: sss.str,
+        imgUrl: JSON.parse(this.$route.query.imgs),
+        str: this.$route.query.str,
       });
-    } else {
-      console.log(11);
     }
   },
   mounted() {},
