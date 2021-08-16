@@ -168,7 +168,7 @@ export default {
   top: 15px;
   left: 110px;
   color: beige;
-  font-size: 16px;
+  font-size: 18px;
 }
 .order {
   width: 100%;
@@ -176,7 +176,7 @@ export default {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   text-align: center;
   line-height: 60px;
-  font-size: 20px;
+  font-size: 16px;
 }
 .order .order-left {
   float: left;
@@ -188,7 +188,7 @@ export default {
   margin-right: 50px;
   position: relative;
   color: rgba(0, 0, 0, 0.87);
-  font-size: 18px;
+  font-size: 16px;
 }
 .van-icon-arrow::before {
   position: absolute;
@@ -208,7 +208,7 @@ export default {
   text-align: center;
 }
 .icon .icon-list .van-icon::before {
-  font-size: 36px;
+  font-size: 34px;
   margin-top: 25px;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -221,7 +221,7 @@ export default {
   padding-top: 15px;
   /* padding-bottom: 15px; */
   background: #f5f5f5;
-  font-size: 20px;
+  font-size: 18px;
   color: rgba(0, 0, 0, 0.87);
 }
 .bottom .bottom-left {
@@ -233,7 +233,7 @@ export default {
   width: 5%;
 }
 .bottom span .van-icon::before {
-  font-size: 36px;
+  font-size: 32px;
   /* color: rgb(35, 160, 160); */
   margin-left: 25px;
 }

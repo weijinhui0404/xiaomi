@@ -50,13 +50,13 @@ export default {
       Toast(this.searchResult);
        console.log(content);
        console.log(content.name);
-       console.log(content.province+content.city+content.addressDetail);
+       console.log(content.province+content.city+content.county+content.addressDetail);
  
        const result = await addAddressApi({
           receiver:content.name,
           mobile:content.tel,
-          regions:content.city,
-          address:content.province+content.city+content.addressDetail,
+          regions:content.areaCode,
+          address:content.province+content.city+content.county+content.addressDetail,
           idDefault:content.isDefault,
        })
        console.log(result);

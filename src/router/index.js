@@ -4,117 +4,163 @@ import VueRouter from "vue-router"
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-    routes:[
+    routes: [
         {
-            path:"/",
-            redirect:"/home",
+            path: "/",
+            redirect: "/home",
 
         },
         {
-            path:"/register",
-            component:()=>import("../pages/register"),
+            path: "/register",
+            component: () => import("../pages/register"),
             meta: {
                 showTab: false,
-              },
+            },
         },
         {
-            path:"/login",
-            component:()=>import("../pages/login"),
+            path: "/login",
+            component: () => import("../pages/login"),
             meta: {
                 showTab: false,
-              },
+            },
         },
         {
-            path:"/home",
-            component:()=>import("../pages/home"),
+            path: "/home",
+            component: () => import("../pages/home"),
             meta: {
                 showTab: true
-              },
+            },
         },
         {
-            path:"/fenlei",
-            component:()=>import("../pages/fenlei"),
+            path: "/fenlei",
+            component: () => import("../pages/fenlei"),
             meta: {
                 showTab: true
-              },
+            },
         },
         {
-            path:"/mi",
-            name:"mi",
-            component:()=>import("../pages/mi"),
+            path: "/mi",
+            name: "mi",
+            component: () => import("../pages/mi"),
             meta: {
                 showTab: true,
-              },
+            },
         },
         {
-            path:"/cart",
-            component:()=>import("../pages/cart"),
+            path: "/cart",
+            component: () => import("../pages/cart"),
             meta: {
                 showTab: true
-              },
+            },
+
+            // 设置路由独享守卫
+            beforeEnter: (to, from, next) => {
+                const isLogin = localStorage.getItem('token') || '';
+                if (!isLogin) {
+                    next('/login');
+                } else {
+                    next();
+                }
+            },
         },
         {
-            path:"/user",
-            component:()=>import("../pages/user"),
+            path: "/user",
+            component: () => import("../pages/user"),
             meta: {
                 showTab: true
-              },
+            },
         },
         {
-            path:"/detail/:id",
-            component:()=>import("../pages/detail"),
+            path: "/detail/:id",
+            component: () => import("../pages/detail"),
             meta: {
                 showTab: false,
-              },
+            },
         },
         {
-            path:"/fabu",
-            component:()=>import("../pages/fabu"),
+            path: "/fabu",
+            component: () => import("../pages/fabu"),
             meta: {
                 showTab: false,
-              },
+            },
         },
         {
-            path:"/order",
-            component:()=>import("../pages/order"),
+            path: "/order",
+            component: () => import("../pages/order"),
             meta: {
                 showTab: false,
-              },
+            },
+            // 设置路由独享守卫
+            beforeEnter: (to, from, next) => {
+                const isLogin = localStorage.getItem('token') || '';
+                if (!isLogin) {
+                    next('/login');
+                } else {
+                    next();
+                }
+            },
         },
         {
-            path:"/address",
-            component:()=>import("../pages/address"),
+            path: "/address",
+            component: () => import("../pages/address"),
             meta: {
                 showTab: false,
-              },
+            },
+            // 设置路由独享守卫
+            beforeEnter: (to, from, next) => {
+                const isLogin = localStorage.getItem('token') || '';
+                if (!isLogin) {
+                    next('/login');
+                } else {
+                    next();
+                }
+            },
         },
         {
-            path:"/addressAdd",
-            component:()=>import("../pages/addressAdd"),
+            path: "/addressAdd",
+            component: () => import("../pages/addressAdd"),
             meta: {
                 showTab: false,
-              },
+            },
         },
         {
-            path:"/addressEdit",
-            component:()=>import("../pages/addressEdit"),
+            path: "/addressEdit",
+            component: () => import("../pages/addressEdit"),
             meta: {
                 showTab: false,
-              },
+            },
         },
         {
-            path:"/changeinfo",
-            component:()=>import("../pages/changeinfo"),
+            path: "/changeinfo",
+            component: () => import("../pages/changeinfo"),
             meta: {
                 showTab: false,
-              },
+            },
+            // 设置路由独享守卫
+            beforeEnter: (to, from, next) => {
+                const isLogin = localStorage.getItem('token') || '';
+                if (!isLogin) {
+                    next('/login');
+                } else {
+                    next();
+                }
+            },
         },
         {
-            path:"/changepassword",
-            component:()=>import("../pages/changepassword"),
+            path: "/changepassword",
+            component: () => import("../pages/changepassword"),
             meta: {
                 showTab: false,
-              },
+            },
+            // 设置路由独享守卫
+            beforeEnter: (to, from, next) => {
+                const isLogin = localStorage.getItem('token') || '';
+                if (!isLogin) {
+                    next('/login');
+                } else {
+                    next();
+                }
+            },
         },
     ]
 })

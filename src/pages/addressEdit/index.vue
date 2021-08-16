@@ -7,14 +7,14 @@
       @click-left="onClickLeft"
     />
     <div>
+      
       <van-address-edit
         :area-list="areaList"
-        :address-info="{
+         :address-info="{
           name: info.receiver,
           tel: info.mobile,
           addressDetail: info.address,
-          county: info.regions,
-          province: info.regions,
+          areaCode: info.regions,
         }"
         show-postal
         show-delete
@@ -45,6 +45,7 @@ export default {
       searchResult: [],
       id: "",
       info: [],
+    
     };
   },
   computed: {},
@@ -61,6 +62,7 @@ export default {
       console.log(result);
       console.log(result.data.receiver);
       this.info = result.data;
+
     },
     async onSave(content) {
       console.log(content);
@@ -85,6 +87,9 @@ export default {
     async onDelete() {
       const result = await deletAddressApi(this.id);
       console.log(result);
+    
+       Toast.success("删除成功");
+      
       this.$router.push("/address");
     },
     onChangeDetail(val) {

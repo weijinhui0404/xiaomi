@@ -22,22 +22,39 @@
         ></van-icon>
       </div>
     </div>
+    <van-submit-bar :price="3050" button-text="删除订单" @submit="onSubmit">
+      <van-checkbox v-model="checked">全选</van-checkbox>
+    </van-submit-bar>
   </div>
 </template>
 
 <script>
-import { Toast } from 'vant';  //getOrderDetailApi
-import { getOrderApi, deletOrderDetailApi } from "../../api/order";
+import { Toast } from "vant"; //getOrderDetailApi
+import { getOrderApi, deletOrderDetailApi ,delManyOrderApi} from "../../api/order";
 export default {
   components: {},
   data() {
     return {
       ordersList: [],
       idx: [],
-      checked: false,
+      // checked: false,
     };
   },
-  computed: {},
+  computed: {
+    checked: {
+      //全选按钮为true时 勾选每一项
+      set(flag) {
+        this.ordersList.map((item) => this.$set(item, "checked", flag));
+      },
+      get() {
+        //全选择时，全选按钮显示
+        return (
+          this.ordersList.length ==
+          this.ordersList.filter((item) => item.checked == true).length
+        );
+      },
+    },
+  },
   watch: {},
 
   methods: {
@@ -47,9 +64,9 @@ export default {
     //删除订单
     async del(id) {
       console.log(id);
-      const result = await deletOrderDetailApi(id)
+      const result = await deletOrderDetailApi(id);
       console.log(result);
-      Toast.success("删除成功")
+      Toast.success("删除成功");
       location.reload();
     },
     //获取订单列表
@@ -58,17 +75,19 @@ export default {
       console.log(result);
       console.log(result.data.orders);
       this.ordersList = result.data.orders;
-      // result.data.orders.forEach((item)=>{
-      //   this.idx.push(item._id);
-      // })
-      //根据id获取订单详情
-      //     this.idx.forEach((id)=>{
-      //       getOrderDetailApi(id).then((res)=>{
-      //           console.log(res);
-      //       })
-
-      //     })
     },
+    //批量删除订单
+    async onSubmit(){
+      this.ordersList.forEach((item)=>{
+        if(item.checked){
+          this.idx.push(item._id)
+        }
+      })
+      console.log(this.idx);
+      const result = await delManyOrderApi({ids:this.idx})
+      console.log(result);
+      location.reload();
+    }
   },
   created() {
     this.getOrder();
